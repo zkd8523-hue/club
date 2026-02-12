@@ -76,7 +76,7 @@
 .controls {
     position: absolute;
     right: 0;
-    top: 51px;
+    top: 21px;
     display: flex;
     gap: 1rem;
     z-index: 100;
