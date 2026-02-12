@@ -1,0 +1,21 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow5">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="gradient5" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9d00ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff0055;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Minimalist text-only logo -->
+  <text x="10" y="40" font-family="Arial, sans-serif" font-weight="900" font-size="32" fill="url(#gradient5)" filter="url(#glow5)" letter-spacing="2">
+    CLUBBNB
+  </text>
+  <line x1="10" y1="48" x2="190" y2="48" stroke="url(#gradient5)" stroke-width="2" filter="url(#glow5)"/>
+</svg>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clubbnb Logo - Yellow Moon 'C' Variations</title>
+    <style>
+        body {
+            background: #050505;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 3rem;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 4rem;
+            font-size: 1.2rem;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 4rem;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .logo-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-card h3 {
+            margin-top: 2rem;
+            color: #FFD700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo-card p {
+            margin-top: 0.5rem;
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        /* Mobile responsive */
+        @media (min-width: 768px) {
+            .logo-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Clubbnb Logo</h1>
+    <p class="subtitle">🌙 'C' 대신 노란 초승달 (Yellow Moon replacing 'C')</p>
+
+    <div class="logo-grid">
+        <!-- Simple -->
+        <div class="logo-card">
+            <div class="logo-container">
+                <img src="/logo-moon-c-simple.svg" alt="Simple Version" height="60">
+            </div>
+            <h3>Simple</h3>
+            <p>깔끔하고 모던한 산세리프 폰트</p>
+        </div>
+
+        <!-- Classic -->
+        <div class="logo-card">
+            <div class="logo-container">
+                <img src="/logo-moon-c-classic.svg" alt="Classic Version" height="70">
+            </div>
+            <h3>Classic</h3>
+            <p>우아한 세리프 폰트와 골드 그라데이션</p>
+        </div>
+
+        <!-- Creative Idea -->
+        <div class="logo-card">
+            <div class="logo-container">
+                <img src="/logo-moon-c-idea.svg" alt="Creative Version" height="60">
+            </div>
+            <h3>Creative</h3>
+            <p>브랜드 컬러 텍스트 + 별 포인트</p>
+        </div>
+    </div>
+</body>
+
+</html>

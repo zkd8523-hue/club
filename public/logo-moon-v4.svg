@@ -1,0 +1,24 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glowMoon4">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="gradientMoon4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9d00ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff0055;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Bold crescent with inner glow -->
+  <path d="M 25 14 A 13 13 0 1 0 25 46 A 10 10 0 1 1 25 14 Z" fill="url(#gradientMoon4)" filter="url(#glowMoon4)"/>
+  <path d="M 25 18 A 11 11 0 1 0 25 42 A 8.5 8 0 1 1 25 18 Z" fill="#050505" opacity="0.3"/>
+  
+  <!-- Text -->
+  <text x="42" y="40" font-family="Arial, sans-serif" font-weight="800" font-size="28" fill="url(#gradientMoon4)" filter="url(#glowMoon4)">
+    Clubbnb
+  </text>
+</svg>

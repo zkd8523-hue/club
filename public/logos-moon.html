@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clubbnb Logo - Crescent Moon Variations</title>
+    <style>
+        body {
+            background: #050505;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 3rem;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            background: linear-gradient(90deg, #9d00ff, #ff0055);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .logo-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(157, 0, 255, 0.3);
+        }
+
+        .logo-card h3 {
+            margin-top: 1.5rem;
+            color: #888;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-card p {
+            margin-top: 0.5rem;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .logo-container {
+            background: #0a0a0a;
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .recommended {
+            border: 2px solid #9d00ff;
+            box-shadow: 0 0 20px rgba(157, 0, 255, 0.3);
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #9d00ff, #ff0055);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Clubbnb Logo</h1>
+    <p class="subtitle">🌙 초승달 심볼 버전</p>
+    <div class="logo-grid">
+        <div class="logo-card recommended">
+            <span class="badge">RECOMMENDED</span>
+            <div class="logo-container">
+                <img src="/logo-moon-v1.svg" alt="Moon Logo Version 1">
+            </div>
+            <h3>Classic Crescent</h3>
+            <p>클래식한 초승달 - 밤/나이트라이프 상징</p>
+        </div>
+        <div class="logo-card">
+            <div class="logo-container">
+                <img src="/logo-moon-v2.svg" alt="Moon Logo Version 2">
+            </div>
+            <h3>Moon & Stars</h3>
+            <p>초승달과 별 - 화려한 밤 분위기</p>
+        </div>
+        <div class="logo-card">
+            <div class="logo-container">
+                <img src="/logo-moon-v3.svg" alt="Moon Logo Version 3">
+            </div>
+            <h3>Minimalist Outline</h3>
+            <p>미니멀 아웃라인 - 세련된 느낌</p>
+        </div>
+        <div class="logo-card">
+            <div class="logo-container">
+                <img src="/logo-moon-v4.svg" alt="Moon Logo Version 4">
+            </div>
+            <h3>Bold with Depth</h3>
+            <p>입체감 있는 초승달 - 프리미엄 느낌</p>
+        </div>
+    </div>
+</body>
+
+</html>

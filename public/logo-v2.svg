@@ -1,0 +1,24 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9d00ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff0055;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Geometric icon - Diamond/Star shape -->
+  <path d="M 20 15 L 28 30 L 20 45 L 12 30 Z" fill="url(#gradient2)" filter="url(#glow2)"/>
+  <path d="M 20 20 L 25 30 L 20 40 L 15 30 Z" fill="#050505"/>
+  
+  <!-- Text -->
+  <text x="42" y="40" font-family="Arial, sans-serif" font-weight="800" font-size="28" fill="url(#gradient2)" filter="url(#glow2)">
+    Clubbnb
+  </text>
+</svg>

@@ -1,0 +1,26 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glowMoon2">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="gradientMoon2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9d00ff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ff0055;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00e5ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Stylized Crescent Moon with star -->
+  <path d="M 23 15 A 12 12 0 1 0 23 45 A 9 9 0 1 1 23 15 Z" fill="url(#gradientMoon2)" filter="url(#glowMoon2)"/>
+  <circle cx="28" cy="22" r="2" fill="url(#gradientMoon2)" filter="url(#glowMoon2)"/>
+  <circle cx="30" cy="28" r="1.5" fill="url(#gradientMoon2)" filter="url(#glowMoon2)"/>
+  
+  <!-- Text -->
+  <text x="42" y="40" font-family="Arial, sans-serif" font-weight="800" font-size="28" fill="url(#gradientMoon2)" filter="url(#glowMoon2)">
+    Clubbnb
+  </text>
+</svg>

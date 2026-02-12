@@ -1,0 +1,98 @@
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.clubName {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--foreground);
+    margin-bottom: 0.2rem;
+}
+
+.date {
+    font-size: 0.9rem;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.status {
+    background: rgba(0, 255, 170, 0.1);
+    color: #00ffaa;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid rgba(0, 255, 170, 0.2);
+}
+
+.info {
+    margin-bottom: 1.5rem;
+}
+
+.tableInfo {
+    font-size: 0.95rem;
+    color: #ccc;
+    margin-bottom: 0.5rem;
+}
+
+.progressContainer {
+    margin-top: 1rem;
+}
+
+.progressBar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progressFill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 3px;
+}
+
+.members {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.priceLabel {
+    display: block;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.priceValue {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--foreground);
+}

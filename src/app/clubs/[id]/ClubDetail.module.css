@@ -1,0 +1,153 @@
+.container {
+    padding-bottom: 5rem;
+    color: white;
+}
+
+.backNav {
+    padding: 0.5rem 5%;
+}
+
+.backLink {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.backLink:hover {
+    color: var(--primary);
+}
+
+.heroSection {
+    width: 100%;
+    height: 40px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.heroImageWrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.heroImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.heroOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem 5%;
+    background: linear-gradient(to top, var(--background), transparent);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.badge {
+    background: var(--primary);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    width: fit-content;
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.rating {
+    color: #FFD700;
+}
+
+.meta {
+    display: flex;
+    gap: 1rem;
+    color: #ccc;
+    font-size: 0.8rem;
+}
+
+.contentGrid {
+    max-width: 1400px;
+    margin: 3rem auto 0;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 4rem;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.sectionTitle::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 20px;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+.description {
+    line-height: 1.8;
+    color: #aaa;
+    font-size: 1.1rem;
+}
+
+.galleryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.galleryImg {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menuGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.menuItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 900px) {
+    .contentGrid {
+        grid-template-columns: 1fr;
+    }
+}

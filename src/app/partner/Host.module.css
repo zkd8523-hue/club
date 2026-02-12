@@ -1,0 +1,138 @@
+.container {
+    padding: 2rem 5% 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: white;
+}
+
+.header {
+    margin-bottom: 3rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.statCard {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.statLabel {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.statValue {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.addBtn {
+    background: var(--primary);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 99px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 15px var(--primary-glow);
+    transition: all 0.3s;
+}
+
+.addBtn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px var(--primary-glow);
+}
+
+.clubList {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.clubCard {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.clubName {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.clubMeta {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.clubActions {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.manageBtn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.manageBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .clubCard {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}

@@ -1,0 +1,20 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="yellowGlow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Yellow Crescent Moon as 'C' -->
+  <!-- Positioned to align with text -->
+  <path d="M 30 15 A 13 13 0 1 0 30 45 A 10 10 0 1 1 30 15 Z" fill="#FFD700" filter="url(#yellowGlow)"/>
+  
+  <!-- Text "lubbnb" -->
+  <text x="45" y="40" font-family="Arial, sans-serif" font-weight="700" font-size="28" fill="white" letter-spacing="1">
+    lubbnb
+  </text>
+</svg>

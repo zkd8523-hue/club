@@ -1,0 +1,53 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Radial gradient for moon glow -->
+    <radialGradient id="moonGlow" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#FFE135;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#FFD700;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#FFA500;stop-opacity:0" />
+    </radialGradient>
+    
+    <!-- Filter for outer glow -->
+    <filter id="outerGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="15" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Gradient for the moon itself -->
+    <linearGradient id="moonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE135;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Black background -->
+  <rect width="400" height="400" fill="#000000"/>
+  
+  <!-- Outer glow effect -->
+  <circle cx="200" cy="200" r="120" fill="url(#moonGlow)" opacity="0.6"/>
+  
+  <!-- Main crescent moon shape -->
+  <path 
+    d="M 200 80 A 120 120 0 1 0 200 320 A 95 95 0 1 1 200 80 Z" 
+    fill="url(#moonGradient)" 
+    filter="url(#outerGlow)"
+  />
+  
+  <!-- Subtle crater details -->
+  <circle cx="180" cy="150" r="8" fill="#F5C842" opacity="0.3"/>
+  <circle cx="195" cy="200" r="12" fill="#F5C842" opacity="0.25"/>
+  <circle cx="185" cy="250" r="6" fill="#F5C842" opacity="0.3"/>
+  <circle cx="170" cy="180" r="5" fill="#F5C842" opacity="0.35"/>
+  
+  <!-- Highlight on the edge for dimension -->
+  <path 
+    d="M 200 85 A 115 115 0 0 0 200 315" 
+    stroke="#FFFACD" 
+    stroke-width="2" 
+    fill="none" 
+    opacity="0.4"
+  />
+</svg>

@@ -1,0 +1,68 @@
+.footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 4rem 0 2rem;
+    background: #000;
+    margin-top: 5rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.brand h3 {
+    font-size: 1.5rem;
+    color: var(--foreground);
+    margin-bottom: 1rem;
+}
+
+.brand span {
+    color: var(--primary);
+}
+
+.brand p {
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.column h4 {
+    color: var(--foreground);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.column ul {
+    list-style: none;
+}
+
+.column li {
+    margin-bottom: 0.8rem;
+}
+
+.column a {
+    color: #888;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.column a:hover {
+    color: var(--primary);
+}
+
+.bottom {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    color: #444;
+    font-size: 0.85rem;
+}
