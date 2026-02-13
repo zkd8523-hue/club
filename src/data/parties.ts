@@ -1,0 +1,34 @@
+import { Party } from "@/types/club";
+
+export const parties: Party[] = [
+    {
+        id: 1,
+        clubName: "Neon District",
+        date: new Date("2026-02-14"),
+        tableType: "VIP 부스",
+        bottles: ["돔 페리뇽", "그레이 구스"],
+        maxMembers: 6,
+        currentMembers: 3,
+        perPersonPrice: 200000,
+    },
+    {
+        id: 2,
+        clubName: "The Vault",
+        date: new Date("2026-02-13"),
+        tableType: "스탠딩 테이블",
+        bottles: ["헤네시 VSOP"],
+        maxMembers: 4,
+        currentMembers: 1,
+        perPersonPrice: 100000,
+    },
+    {
+        id: 3,
+        clubName: "Sky Garden",
+        date: new Date("2026-02-20"),
+        tableType: "VVIP 룸",
+        bottles: ["아르망 드 브리ignac", "과일 플레이트"],
+        maxMembers: 10,
+        currentMembers: 8,
+        perPersonPrice: 300000,
+    }
+];
