@@ -10,7 +10,6 @@ export default function SearchBar() {
     const [location, setLocation] = useState("");
     const [date, setDate] = useState("");
     const [guests, setGuests] = useState("");
-    const inputRef = useRef<HTMLInputElement>(null);
 
     const locationOptions = [
         { value: "Gangnam", label: "서울 - 강남" },
@@ -19,6 +18,22 @@ export default function SearchBar() {
         { value: "Apgujeong", label: "서울 - 압구정" },
         { value: "Busan", label: "부산 - 해운대/서면" },
         { value: "Jeju", label: "제주" }
+    ];
+
+    const guestOptions = [
+        { value: "1", label: "1명" },
+        { value: "2", label: "2명" },
+        { value: "3", label: "3명" },
+        { value: "4", label: "4명" },
+        { value: "5", label: "5명" },
+        { value: "6", label: "6명" },
+        { value: "7", label: "7명" },
+        { value: "8", label: "8명" },
+        { value: "9", label: "9명" },
+        { value: "10", label: "10명" },
+        { value: "15", label: "15명" },
+        { value: "20", label: "20명" },
+        { value: "20+", label: "20명 이상" }
     ];
 
     const handleSearch = () => {
@@ -46,20 +61,12 @@ export default function SearchBar() {
             </div>
             <div className={styles.inputGroup}>
                 <label className={styles.label}>인원 (Guests)</label>
-                <div
-                    onClick={() => inputRef.current?.focus()}
-                    className={styles.guestInputWrapper}
-                >
-                    <input
-                        ref={inputRef}
-                        type="number"
-                        placeholder="2명"
-                        value={guests}
-                        onChange={(e) => setGuests(e.target.value)}
-                        min="1"
-                        className={styles.guestInput}
-                    />
-                </div>
+                <CustomSelect
+                    value={guests}
+                    onChange={setGuests}
+                    options={guestOptions}
+                    placeholder="인원 선택"
+                />
             </div>
             <button className={styles.searchBtn} onClick={handleSearch}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

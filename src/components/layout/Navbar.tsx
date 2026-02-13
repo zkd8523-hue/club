@@ -42,17 +42,20 @@ export default function Navbar() {
                     <Link href="/#home" className={styles.link} onClick={(e) => scrollToSection(e, 'home')}>
                         홈 (Home)
                     </Link>
-                    <Link href="/clubs" className={styles.link}>
-                        클럽 (Clubs)
-                    </Link>
-                    <Link href="/membership" className={styles.link}>
-                        멤버십 (Membership)
+                    <Link href="/#hot-deals" className={styles.link} onClick={(e) => scrollToSection(e, 'hot-deals')}>
+                        🔥 HOT DEALS
                     </Link>
                     <Link href="/#auction" className={styles.link} onClick={(e) => scrollToSection(e, 'auction')}>
                         경매 (Auction)
                     </Link>
                     <Link href="/#party-section" className={styles.link} onClick={(e) => scrollToSection(e, 'party-section')}>
                         파티/조각 (Parties)
+                    </Link>
+                    <Link href="/clubs" className={styles.link}>
+                        🎵 NOW PLAYING
+                    </Link>
+                    <Link href="/membership" className={styles.link}>
+                        멤버십 (Membership)
                     </Link>
                 </div>
                 <div className={styles.actions}>

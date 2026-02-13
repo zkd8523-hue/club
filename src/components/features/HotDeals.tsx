@@ -69,7 +69,7 @@ export default function HotDeals() {
     };
 
     return (
-        <section className={styles.hotDealsSection}>
+        <section id="hot-deals" className={styles.hotDealsSection}>
             <div className={styles.header}>
                 <div className={styles.titleGroup}>
                     <span className={styles.badge}>🔥 HOT DEALS</span>
