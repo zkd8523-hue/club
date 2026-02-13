@@ -5,14 +5,37 @@ import { clubs } from '@/data/clubs';
 import { REGIONS } from '@/constants/regions';
 import styles from './Clubs.module.css';
 
+const QUICK_FILTERS = ['오늘 이용 가능', 'EDM', '힙합', 'R&B', '즐겨찾기'];
+
 export default function ClubsPage() {
     const [selectedRegion, setSelectedRegion] = useState('전체');
+    const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
     const [openMusicId, setOpenMusicId] = useState<number | null>(null);
     const [openDjId, setOpenDjId] = useState<number | null>(null);
 
-    const filteredClubs = selectedRegion === '전체'
+    const toggleFilter = (filter: string) => {
+        setSelectedFilters(prev =>
+            prev.includes(filter)
+                ? prev.filter(f => f !== filter)
+                : [...prev, filter]
+        );
+    };
+
+    let filteredClubs = selectedRegion === '전체'
         ? clubs
         : clubs.filter(club => club.region === selectedRegion);
+
+    // Apply quick filters
+    if (selectedFilters.length > 0) {
+        filteredClubs = filteredClubs.filter(club => {
+            return selectedFilters.every(filter => {
+                if (filter === 'EDM') return club.category === 'EDM';
+                if (filter === '힙합') return club.category === '힙합';
+                if (filter === 'R&B') return club.category === 'R&B';
+                return true; // 오늘 이용 가능, 즐겨찾기는 나중에 구현
+            });
+        });
+    }
 
     const toggleMusic = (id: number) => {
         setOpenMusicId(openMusicId === id ? null : id);
@@ -38,6 +61,18 @@ export default function ClubsPage() {
                             onClick={() => setSelectedRegion(region)}
                         >
                             {region}
+                        </button>
+                    ))}
+                </div>
+
+                <div className={styles.quickFilters}>
+                    {QUICK_FILTERS.map(filter => (
+                        <button
+                            key={filter}
+                            className={`${styles.filterChip} ${selectedFilters.includes(filter) ? styles.activeFilter : ''}`}
+                            onClick={() => toggleFilter(filter)}
+                        >
+                            {filter}
                         </button>
                     ))}
                 </div>

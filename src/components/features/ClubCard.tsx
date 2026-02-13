@@ -1,13 +1,19 @@
+'use client';
+
 import { Club } from '@/types/club';
 import styles from "./ClubCard.module.css";
 import Button from "../common/Button";
 import Link from "next/link";
+import { useFavorites } from '@/hooks/useFavorites';
 
 interface ClubCardProps {
     club: Club;
 }
 
 export default function ClubCard({ club }: ClubCardProps) {
+    const { isFavorite, toggleFavorite } = useFavorites();
+    const favorite = isFavorite(club.id);
+
     return (
         <div className={styles.card}>
             <div className={styles.imageContainer}>
@@ -16,6 +22,16 @@ export default function ClubCard({ club }: ClubCardProps) {
                     IMG
                 </div>
                 <div className={styles.badge}>{club.category || "EDM"}</div>
+                <button
+                    className={styles.favoriteBtn}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        toggleFavorite(club.id);
+                    }}
+                    aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
+                >
+                    {favorite ? '❤️' : '🤍'}
+                </button>
             </div>
             <div className={styles.content}>
                 <div className={styles.header}>

@@ -5,6 +5,7 @@ import styles from './HotDeals.module.css';
 import Link from 'next/link';
 import { HotDeal } from '@/types/club';
 import CountdownTimer from '@/components/common/CountdownTimer';
+import { useFavorites } from '@/hooks/useFavorites';
 
 const HOT_DEALS_DATA: HotDeal[] = [
     {
@@ -59,6 +60,7 @@ const HOT_DEALS_DATA: HotDeal[] = [
 
 export default function HotDeals() {
     const scrollRef = useRef<HTMLDivElement>(null);
+    const { isFavorite, toggleFavorite } = useFavorites();
 
     const scroll = (direction: 'left' | 'right') => {
         if (scrollRef.current) {
@@ -89,6 +91,16 @@ export default function HotDeals() {
                                 <div className={styles.overlay}>
                                     <span className={styles.clubName}>{deal.clubName}</span>
                                 </div>
+                                <button
+                                    className={styles.favoriteBtn}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        toggleFavorite(deal.id);
+                                    }}
+                                    aria-label={isFavorite(deal.id) ? "Remove from favorites" : "Add to favorites"}
+                                >
+                                    {isFavorite(deal.id) ? '❤️' : '🤍'}
+                                </button>
                             </div>
                         </Link>
 
