@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import styles from './Login.module.css';
 import Link from 'next/link';
 
-export default function PartnerLogin() {
+export default function UserLogin() {
     const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,7 +18,7 @@ export default function PartnerLogin() {
         // Simulate authentication
         setTimeout(() => {
             setIsLoading(false);
-            router.push('/partner');
+            router.push('/');
         }, 1500);
     };
 
@@ -29,8 +29,8 @@ export default function PartnerLogin() {
                     <Link href="/" className={styles.logo}>
                         Club<span>bnb</span>
                     </Link>
-                    <h1 className={styles.title}>Partner Access</h1>
-                    <p className={styles.subtitle}>파트너 전용 관리 시스템 로그인</p>
+                    <h1 className={styles.title}>Welcome Back!</h1>
+                    <p className={styles.subtitle}>클럽 예약의 새로운 기준, Clubbnb</p>
                 </div>
 
                 <form className={styles.form} onSubmit={handleLogin}>
@@ -38,7 +38,7 @@ export default function PartnerLogin() {
                         <label>이메일 주소</label>
                         <input
                             type="email"
-                            placeholder="partner@example.com"
+                            placeholder="user@example.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
@@ -56,7 +56,7 @@ export default function PartnerLogin() {
                     </div>
 
                     <button type="submit" className={styles.loginBtn} disabled={isLoading}>
-                        {isLoading ? '인증 중...' : '로그인 (Login)'}
+                        {isLoading ? '로그인 중...' : '로그인 (Login)'}
                     </button>
                 </form>
 
@@ -98,7 +98,7 @@ export default function PartnerLogin() {
                 </div>
 
                 <div className={styles.footer}>
-                    <p>계정이 없으신가요? <Link href="/partner/apply">입점 문의하기</Link></p>
+                    <p>계정이 없으신가요? <Link href="/signup">회원가입하기</Link></p>
                     <Link href="/" className={styles.backHome}>← 홈으로 돌아가기</Link>
                 </div>
             </div>

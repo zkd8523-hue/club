@@ -59,12 +59,9 @@ export default function Navbar() {
                     </Link>
                 </div>
                 <div className={styles.actions}>
-                    <button
-                        className={styles.loginBtn}
-                        onClick={() => alert('일반 회원 로그인은 현재 준비 중입니다. PARTNER 버튼을 이용해 주세요!')}
-                    >
+                    <Link href="/login" className={styles.loginBtn}>
                         로그인 (Sign In)
-                    </button>
+                    </Link>
                     <Link href="/partner/login" className={styles.partnerBtn}>PARTNER</Link>
                 </div>
             </div>
