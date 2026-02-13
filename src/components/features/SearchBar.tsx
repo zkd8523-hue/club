@@ -3,8 +3,8 @@
 import styles from "./SearchBar.module.css";
 import { useState, useRef } from "react";
 
-import DatePicker from "../ui/DatePicker";
-import CustomSelect from "../ui/CustomSelect";
+import DatePicker from "../common/DatePicker";
+import CustomSelect from "../common/CustomSelect";
 
 export default function SearchBar() {
     const [location, setLocation] = useState("");

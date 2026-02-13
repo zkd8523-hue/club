@@ -1,6 +1,6 @@
 import { Club } from '@/types/club';
 import styles from "./ClubCard.module.css";
-import Button from "../ui/Button";
+import Button from "../common/Button";
 import Link from "next/link";
 
 interface ClubCardProps {

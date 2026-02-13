@@ -1,5 +1,5 @@
 import styles from "./PartyCard.module.css";
-import Button from "@/components/ui/Button";
+import Button from "@/components/common/Button";
 import { Party } from "@/types/club";
 
 interface PartyCardProps {

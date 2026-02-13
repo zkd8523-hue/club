@@ -2,14 +2,13 @@
 
 import { useState } from 'react';
 import { clubs } from '@/data/clubs';
+import { REGIONS } from '@/constants/regions';
 import styles from './Clubs.module.css';
 
 export default function ClubsPage() {
     const [selectedRegion, setSelectedRegion] = useState('전체');
     const [openMusicId, setOpenMusicId] = useState<number | null>(null);
     const [openDjId, setOpenDjId] = useState<number | null>(null);
-
-    const regions = ['전체', '강남', '홍대', '이태원', '부산', '대구'];
 
     const filteredClubs = selectedRegion === '전체'
         ? clubs
@@ -32,7 +31,7 @@ export default function ClubsPage() {
                 </h1>
 
                 <div className={styles.regionSelector}>
-                    {regions.map(region => (
+                    {REGIONS.map(region => (
                         <button
                             key={region}
                             className={`${styles.regionBtn} ${selectedRegion === region ? styles.activeRegion : ''}`}

@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import styles from "./BookingWidget.module.css";
-import Button from "../ui/Button";
-import DatePicker from "../ui/DatePicker";
+import Button from "../common/Button";
+import DatePicker from "../common/DatePicker";
 import { Club } from "@/types/club";
 
 interface BookingWidgetProps {

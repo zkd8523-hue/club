@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css";
+import { scrollToElement, isHomePage } from "@/utils/scroll";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
@@ -16,40 +17,18 @@ export default function Navbar() {
         window.addEventListener("scroll", handleScroll);
 
         // Handle initial scroll if coming from another page with a hash
-        if (pathname === '/' && window.location.hash) {
+        if (isHomePage(pathname) && window.location.hash) {
             const id = window.location.hash.replace('#', '');
-            setTimeout(() => {
-                const element = document.getElementById(id);
-                if (element) {
-                    const offset = 80;
-                    const bodyRect = document.body.getBoundingClientRect().top;
-                    const elementRect = element.getBoundingClientRect().top;
-                    const elementPosition = elementRect - bodyRect;
-                    const offsetPosition = elementPosition - offset;
-                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                }
-            }, 100);
+            setTimeout(() => scrollToElement(id, 80), 100);
         }
 
         return () => window.removeEventListener("scroll", handleScroll);
     }, [pathname]);
 
     const scrollToSection = (e: React.MouseEvent, id: string) => {
-        if (pathname === '/') {
+        if (isHomePage(pathname)) {
             e.preventDefault();
-            const element = document.getElementById(id);
-            if (element) {
-                const offset = 80;
-                const bodyRect = document.body.getBoundingClientRect().top;
-                const elementRect = element.getBoundingClientRect().top;
-                const elementPosition = elementRect - bodyRect;
-                const offsetPosition = elementPosition - offset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
+            scrollToElement(id, 80);
         }
     };
 

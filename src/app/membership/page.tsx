@@ -1,4 +1,4 @@
-import Button from "@/components/ui/Button";
+import Button from "@/components/common/Button";
 import styles from "./Membership.module.css";
 
 export default function MembershipPage() {

@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import styles from './HotDeals.module.css';
 import Link from 'next/link';
 import { HotDeal } from '@/types/club';
-import { useCountdown } from '@/hooks/useCountdown';
+import CountdownTimer from '@/components/common/CountdownTimer';
 
 const HOT_DEALS_DATA: HotDeal[] = [
     {
@@ -57,15 +57,6 @@ const HOT_DEALS_DATA: HotDeal[] = [
     }
 ];
 
-interface CountdownTimerProps {
-    initialSeconds: number;
-}
-
-const CountdownTimer = ({ initialSeconds }: CountdownTimerProps) => {
-    const { formattedTime } = useCountdown(initialSeconds);
-    return <span className={styles.timer}>{formattedTime}</span>;
-};
-
 export default function HotDeals() {
     const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -114,7 +105,7 @@ export default function HotDeals() {
                             <div className={styles.footer}>
                                 <div className={styles.fomo}>
                                     <span className={styles.fomoLabel}>남은 시간</span>
-                                    <CountdownTimer initialSeconds={deal.expiresIn} />
+                                    <CountdownTimer initialSeconds={deal.expiresIn} className={styles.timer} />
                                 </div>
                             </div>
                             <Link href={`/clubs/${deal.id}`} className={styles.bookBtn}>

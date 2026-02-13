@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import styles from './Checkout.module.css';
-import Button from '../ui/Button';
+import Button from '../common/Button';
 import { Club } from '@/types/club';
 
 interface CheckoutClientProps {

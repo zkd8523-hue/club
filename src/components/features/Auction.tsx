@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styles from './Auction.module.css';
 import { Auction as AuctionType } from '@/types/club';
-import { useCountdown } from '@/hooks/useCountdown';
+import CountdownTimer from '@/components/common/CountdownTimer';
 
 const INITIAL_AUCTIONS: AuctionType[] = [
     {
@@ -29,15 +29,6 @@ const INITIAL_AUCTIONS: AuctionType[] = [
         image: 'https://images.unsplash.com/photo-1545128485-c400e7702796?q=80&w=800&auto=format&fit=crop',
     }
 ];
-
-interface CountdownTimerProps {
-    initialSeconds: number;
-}
-
-const CountdownTimer = ({ initialSeconds }: CountdownTimerProps) => {
-    const { formattedTime } = useCountdown(initialSeconds);
-    return <span className={styles.timer}>{formattedTime}</span>;
-};
 
 export default function Auction() {
     const [auctions, setAuctions] = useState<AuctionType[]>(INITIAL_AUCTIONS);
@@ -74,7 +65,7 @@ export default function Auction() {
                         <div className={styles.imageWrapper}>
                             <img src={auction.image} alt={auction.clubName} className={styles.image} />
                             <div className={styles.timeTag}>
-                                <CountdownTimer initialSeconds={auction.expiresIn} /> 남음
+                                <CountdownTimer initialSeconds={auction.expiresIn} className={styles.timer} /> 남음
                             </div>
                             <div className={styles.bidderCount}>
                                 {auction.bidders}명 참여 중
