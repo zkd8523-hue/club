@@ -3,7 +3,7 @@ import styles from "./Membership.module.css";
 
 export default function MembershipPage() {
     return (
-        <div className="container" style={{ padding: '4rem 1.5rem' }}>
+        <div className={`container ${styles.container}`}>
             <div className={styles.header}>
                 <h1 className="text-gradient">Clubbnb Gold Membership</h1>
                 <p>Unlock the most exclusive nightlife experiences in Korea.</p>

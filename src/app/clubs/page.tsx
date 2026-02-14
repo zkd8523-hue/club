@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { clubs } from '@/data/clubs';
 import { REGIONS } from '@/constants/regions';
+import { useFavorites } from '@/hooks/useFavorites';
 import styles from './Clubs.module.css';
 
 const QUICK_FILTERS = ['오늘 이용 가능', 'EDM', '힙합', 'R&B', '즐겨찾기'];
@@ -10,8 +12,8 @@ const QUICK_FILTERS = ['오늘 이용 가능', 'EDM', '힙합', 'R&B', '즐겨�
 export default function ClubsPage() {
     const [selectedRegion, setSelectedRegion] = useState('전체');
     const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-    const [openMusicId, setOpenMusicId] = useState<number | null>(null);
     const [openDjId, setOpenDjId] = useState<number | null>(null);
+    const { favorites } = useFavorites();
 
     const toggleFilter = (filter: string) => {
         setSelectedFilters(prev =>
@@ -32,15 +34,12 @@ export default function ClubsPage() {
                 if (filter === 'EDM') return club.category === 'EDM';
                 if (filter === '힙합') return club.category === '힙합';
                 if (filter === 'R&B') return club.category === 'R&B';
-                return true; // 오늘 이용 가능, 즐겨찾기는 나중에 구현
+                if (filter === '즐겨찾기') return favorites.includes(club.id);
+                if (filter === '오늘 이용 가능') return true; // All clubs are available today for now
+                return true;
             });
         });
     }
-
-    const toggleMusic = (id: number) => {
-        setOpenMusicId(openMusicId === id ? null : id);
-        if (openDjId === id) setOpenDjId(null);
-    };
 
     const toggleDj = (id: number) => {
         setOpenDjId(openDjId === id ? null : id);
@@ -50,8 +49,11 @@ export default function ClubsPage() {
         <div className={styles.container}>
             <header className={styles.header}>
                 <h1 className={styles.headline}>
-                    핫플레이스의 NOW PLAYING
+                    오늘 밤, 어느 지역으로 가시나요?
                 </h1>
+                <p className={styles.subheadline}>
+                    먼저 방문하실 지역을 선택해주세요
+                </p>
 
                 <div className={styles.regionSelector}>
                     {REGIONS.map(region => (
@@ -64,6 +66,12 @@ export default function ClubsPage() {
                         </button>
                     ))}
                 </div>
+
+                {selectedRegion && (
+                    <div className={styles.selectedRegionBadge}>
+                        📍 선택된 지역: <strong>{selectedRegion}</strong>
+                    </div>
+                )}
 
                 <div className={styles.quickFilters}>
                     {QUICK_FILTERS.map(filter => (
@@ -81,55 +89,18 @@ export default function ClubsPage() {
             <div className={styles.clubGrid}>
                 {filteredClubs.map(club => (
                     <article key={club.id} className={styles.clubCard}>
-                        <div
-                            className={styles.imageWrapper}
-                            onClick={() => toggleMusic(club.id)}
-                        >
-                            <img src={club.images[0]} alt={club.name} className={styles.img} />
+                        <div className={styles.imageWrapper}>
+                            <Image src={club.images[0]} alt={club.name} fill className={styles.img} sizes="(max-width: 768px) 100vw, 350px" />
                             <div className={styles.overlay}>
                                 <div className={styles.category}>{club.category}</div>
                                 <h2 className={styles.name}>{club.name}</h2>
-                                <div style={{ color: '#aaa', fontSize: '0.9rem', marginTop: '5px' }}>
+                                <div className={styles.regionInfo}>
                                     {club.region} · ★ {club.rating}
                                 </div>
                             </div>
                         </div>
 
                         <div className={styles.content}>
-                            <fieldset
-                                className={styles.musicFieldset}
-                                onClick={() => toggleMusic(club.id)}
-                            >
-                                <legend className={styles.legend}>
-                                    <div className={styles.waveContainer}>
-                                        <div className={`${styles.wave} ${styles.wave1}`}></div>
-                                        <div className={`${styles.wave} ${styles.wave2}`}></div>
-                                        <div className={`${styles.wave} ${styles.wave3}`}></div>
-                                    </div>
-                                    <span className={styles.nowPlayingLabel}>NOW PLAYING</span>
-                                </legend>
-
-                                <div className={styles.liveInfo}>
-                                    <div className={styles.songDisplay}>
-                                        <span className={styles.songArtist}>{club.nowPlaying.artist}</span>
-                                        <span className={styles.songDivider}>-</span>
-                                        <span className={styles.songTitle}>{club.nowPlaying.title}</span>
-                                    </div>
-                                </div>
-
-                                <div className={`${styles.historyPanel} ${openMusicId === club.id ? styles.showHistory : ''}`}>
-                                    <div className={styles.historyHeader}>RECENTLY PLAYED</div>
-                                    {club.musicHistory.map((history, idx) => (
-                                        <div key={idx} className={styles.historyItem}>
-                                            <div className={styles.historyDetail}>
-                                                <span className={styles.historyTitle}>{history.title}</span>
-                                                <span className={styles.historyArtist}>{history.artist}</span>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </fieldset>
-
                             <div className={styles.djSection}>
                                 <div className={styles.djBrief}>
                                     <span className={styles.djLabel}>CURRENT DJ</span>
@@ -144,7 +115,7 @@ export default function ClubsPage() {
 
                                 <div className={`${styles.djDetailPanel} ${openDjId === club.id ? styles.showDj : ''}`}>
                                     <div className={styles.djMain}>
-                                        <img src={club.currentDJ.image} alt={club.currentDJ.name} className={styles.djProfileImg} />
+                                        <Image src={club.currentDJ.image} alt={club.currentDJ.name} width={80} height={80} className={styles.djProfileImg} />
                                         <div className={styles.djInfo}>
                                             <p className={styles.djBio}>{club.currentDJ.bio}</p>
                                             <a
@@ -186,7 +157,7 @@ export default function ClubsPage() {
             </div>
 
             {filteredClubs.length === 0 && (
-                <div style={{ textAlign: 'center', padding: '4rem', color: '#555' }}>
+                <div className={styles.emptyState}>
                     해당 지역에는 아직 등록된 클럽이 없습니다. :(
                 </div>
             )}

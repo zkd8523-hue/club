@@ -1,11 +1,13 @@
 "use client";
 
-import { useRef } from 'react';
+import { useRef, useMemo } from 'react';
+import Image from 'next/image';
 import styles from './HotDeals.module.css';
 import Link from 'next/link';
 import { HotDeal } from '@/types/club';
 import CountdownTimer from '@/components/common/CountdownTimer';
 import { useFavorites } from '@/hooks/useFavorites';
+import { clubs } from '@/data/clubs';
 
 const HOT_DEALS_DATA: HotDeal[] = [
     {
@@ -58,9 +60,23 @@ const HOT_DEALS_DATA: HotDeal[] = [
     }
 ];
 
-export default function HotDeals() {
+interface HotDealsProps {
+    selectedRegion?: string;
+}
+
+export default function HotDeals({ selectedRegion = '전체' }: HotDealsProps) {
     const scrollRef = useRef<HTMLDivElement>(null);
     const { isFavorite, toggleFavorite } = useFavorites();
+
+    const filteredDeals = useMemo(() => {
+        if (selectedRegion === '전체') {
+            return HOT_DEALS_DATA;
+        }
+        return HOT_DEALS_DATA.filter(deal => {
+            const club = clubs.find(c => c.name.includes(deal.clubName.split('(')[0].trim()));
+            return club?.region === selectedRegion;
+        });
+    }, [selectedRegion]);
 
     const scroll = (direction: 'left' | 'right') => {
         if (scrollRef.current) {
@@ -74,20 +90,29 @@ export default function HotDeals() {
         <section id="hot-deals" className={styles.hotDealsSection}>
             <div className={styles.header}>
                 <div className={styles.titleGroup}>
-                    <span className={styles.badge}>🔥 HOT DEALS</span>
+                    <span className={styles.badge}>
+                        🔥 {selectedRegion !== '전체' ? `${selectedRegion} ` : ''}HOT DEALS
+                    </span>
                 </div>
-                <div className={styles.controls}>
-                    <button onClick={() => scroll('left')} className={styles.scrollBtn}>&larr;</button>
-                    <button onClick={() => scroll('right')} className={styles.scrollBtn}>&rarr;</button>
-                </div>
+                {filteredDeals.length > 0 && (
+                    <div className={styles.controls}>
+                        <button onClick={() => scroll('left')} className={styles.scrollBtn}>&larr;</button>
+                        <button onClick={() => scroll('right')} className={styles.scrollBtn}>&rarr;</button>
+                    </div>
+                )}
             </div>
 
-            <div className={styles.carouselContainer} ref={scrollRef}>
-                {HOT_DEALS_DATA.map((deal) => (
+            {filteredDeals.length === 0 ? (
+                <div className={styles.emptyState}>
+                    {selectedRegion} 지역에는 현재 핫딜이 없습니다
+                </div>
+            ) : (
+                <div className={styles.carouselContainer} ref={scrollRef}>
+                    {filteredDeals.map((deal) => (
                     <div key={deal.id} className={styles.dealCard}>
                         <Link href={`/clubs/${deal.id}`} className={styles.imageLink}>
                             <div className={styles.imageWrapper}>
-                                <img src={deal.image} alt={deal.clubName} className={styles.image} />
+                                <Image src={deal.image} alt={deal.clubName} fill className={styles.image} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 20vw" priority={deal.id <= 2} />
                                 <div className={styles.overlay}>
                                     <span className={styles.clubName}>{deal.clubName}</span>
                                 </div>
@@ -126,7 +151,8 @@ export default function HotDeals() {
                         </div>
                     </div>
                 ))}
-            </div>
+                </div>
+            )}
         </section>
     );
 }

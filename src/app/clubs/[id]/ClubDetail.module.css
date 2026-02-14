@@ -20,7 +20,7 @@
 
 .heroSection {
     width: 100%;
-    height: 40px;
+    height: 400px;
     position: relative;
     overflow: hidden;
     margin-top: 0.5rem;
@@ -33,8 +33,6 @@
 }
 
 .heroImage {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
 }
 
@@ -125,12 +123,17 @@
     gap: 1rem;
 }
 
-.galleryImg {
+.galleryImgWrapper {
+    position: relative;
     width: 100%;
     height: 200px;
-    object-fit: cover;
     border-radius: 12px;
+    overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.galleryImg {
+    object-fit: cover;
 }
 
 .menuGrid {

@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import styles from './Auction.module.css';
 import { Auction as AuctionType } from '@/types/club';
 import CountdownTimer from '@/components/common/CountdownTimer';
+import { clubs } from '@/data/clubs';
 
 const INITIAL_AUCTIONS: AuctionType[] = [
     {
@@ -30,8 +32,25 @@ const INITIAL_AUCTIONS: AuctionType[] = [
     }
 ];
 
-export default function Auction() {
+interface AuctionProps {
+    selectedRegion?: string;
+}
+
+export default function Auction({ selectedRegion = '전체' }: AuctionProps) {
     const [auctions, setAuctions] = useState<AuctionType[]>(INITIAL_AUCTIONS);
+    const [filteredAuctions, setFilteredAuctions] = useState<AuctionType[]>(INITIAL_AUCTIONS);
+
+    useEffect(() => {
+        if (selectedRegion === '전체') {
+            setFilteredAuctions(auctions);
+        } else {
+            const filtered = auctions.filter(auction => {
+                const club = clubs.find(c => c.name === auction.clubName);
+                return club?.region === selectedRegion;
+            });
+            setFilteredAuctions(filtered);
+        }
+    }, [selectedRegion, auctions]);
     const [animatingId, setAnimatingId] = useState<number | null>(null);
 
     const handleBid = (id: number) => {
@@ -54,16 +73,23 @@ export default function Auction() {
             <div className={styles.header}>
                 <div className={styles.titleGroup}>
                     <span className={styles.badge}>LIVE AUCTION</span>
-                    <h2 className={styles.title}>실시간 테이블 경매 🔨</h2>
+                    <h2 className={styles.title}>
+                        {selectedRegion !== '전체' ? `${selectedRegion} ` : ''}실시간 테이블 경매 🔨
+                    </h2>
                     <p className={styles.subtitle}>공석 최소화 패키지! 최고의 자리를 최적의 가격에 입찰하세요.</p>
                 </div>
             </div>
 
-            <div className={styles.grid}>
-                {auctions.map((auction) => (
+            {filteredAuctions.length === 0 ? (
+                <div className={styles.emptyState}>
+                    {selectedRegion} 지역에는 현재 진행 중인 경매가 없습니다
+                </div>
+            ) : (
+                <div className={styles.grid}>
+                    {filteredAuctions.map((auction) => (
                     <div key={auction.id} className={styles.auctionCard}>
                         <div className={styles.imageWrapper}>
-                            <img src={auction.image} alt={auction.clubName} className={styles.image} />
+                            <Image src={auction.image} alt={auction.clubName} fill className={styles.image} sizes="(max-width: 768px) 100vw, 200px" />
                             <div className={styles.timeTag}>
                                 <CountdownTimer initialSeconds={auction.expiresIn} className={styles.timer} /> 남음
                             </div>
@@ -100,7 +126,8 @@ export default function Auction() {
                         </div>
                     </div>
                 ))}
-            </div>
+                </div>
+            )}
         </section>
     );
 }

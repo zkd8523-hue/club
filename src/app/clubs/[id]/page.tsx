@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getClub } from "@/data/clubs";
 import BookingWidget from "@/components/booking/BookingWidget";
 import styles from "./ClubDetail.module.css";
@@ -24,7 +25,7 @@ export default async function ClubDetailPage({ params }: ClubDetailPageProps) {
 
             <div className={styles.heroSection}>
                 <div className={styles.heroImageWrapper}>
-                    <img src={club.images[0]} alt={club.name} className={styles.heroImage} />
+                    <Image src={club.images[0]} alt={club.name} fill className={styles.heroImage} sizes="100vw" priority />
                     <div className={styles.heroOverlay}>
                         <div className={styles.badge}>{club.category}</div>
                         <h1 className={styles.title}>{club.name}</h1>
@@ -48,7 +49,9 @@ export default async function ClubDetailPage({ params }: ClubDetailPageProps) {
                             <h2 className={styles.sectionTitle}>갤러리 (Gallery)</h2>
                             <div className={styles.galleryGrid}>
                                 {club.images.map((img, idx) => (
-                                    <img key={idx} src={img} alt={`${club.name} gallery ${idx}`} className={styles.galleryImg} />
+                                    <div key={idx} className={styles.galleryImgWrapper}>
+                                        <Image src={img} alt={`${club.name} gallery ${idx}`} fill className={styles.galleryImg} sizes="(max-width: 768px) 100vw, 300px" />
+                                    </div>
                                 ))}
                             </div>
                         </section>

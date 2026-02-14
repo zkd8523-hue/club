@@ -5,10 +5,14 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css";
 import { scrollToElement, isHomePage } from "@/utils/scroll";
+import { useCartStore } from "@/store/cartStore";
+import { useUIStore } from "@/store/uiStore";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname();
+    const cartItemCount = useCartStore(state => state.getItemCount());
+    const toggleCart = useUIStore(state => state.toggleCart);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -51,15 +55,18 @@ export default function Navbar() {
                     <Link href="/#party-section" className={styles.link} onClick={(e) => scrollToSection(e, 'party-section')}>
                         파티/조각 (Parties)
                     </Link>
-                    <Link href="/clubs" className={styles.link}>
-                        🎵 NOW PLAYING
-                    </Link>
                     <Link href="/membership" className={styles.link}>
                         멤버십 (Membership)
                     </Link>
                 </div>
                 <div className={styles.actions}>
-                    <Link href="/login" className={styles.loginBtn}>
+                    <button className={styles.cartBtn} onClick={toggleCart}>
+                        Cart
+                        {cartItemCount > 0 && (
+                            <span className={styles.cartBadge}>{cartItemCount}</span>
+                        )}
+                    </button>
+                    <Link href="/auth/signin" className={styles.loginBtn}>
                         로그인 (Sign In)
                     </Link>
                     <Link href="/partner/login" className={styles.partnerBtn}>PARTNER</Link>

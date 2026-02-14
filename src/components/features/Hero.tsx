@@ -1,5 +1,4 @@
 import styles from "./Hero.module.css";
-import SearchBar from "./SearchBar";
 
 export default function Hero() {
     return (
@@ -13,7 +12,6 @@ export default function Hero() {
                 <p className={styles.subtitle}>
                     프리미엄 클럽 테이블 예약부터 바틀 주문, 함께할 파티 조각까지.
                 </p>
-                <SearchBar />
             </div>
         </section>
     );

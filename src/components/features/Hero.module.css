@@ -1,12 +1,12 @@
 .hero {
     position: relative;
-    min-height: 80vh;
+    min-height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     overflow: visible;
-    padding: 0 1.5rem;
+    padding: 0 1.5rem 400px;
     margin-top: -146px;
     z-index: 20;
     pointer-events: none;

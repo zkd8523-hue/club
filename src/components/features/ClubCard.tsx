@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Club } from '@/types/club';
 import styles from "./ClubCard.module.css";
 import Button from "../common/Button";
@@ -17,10 +18,13 @@ export default function ClubCard({ club }: ClubCardProps) {
     return (
         <div className={styles.card}>
             <div className={styles.imageContainer}>
-                <div className={styles.imagePlaceholder}>
-                    {/* In real app, next/image here */}
-                    IMG
-                </div>
+                <Image
+                    src={club.images?.[0] || 'https://images.unsplash.com/photo-1574391884720-bbe37400581a?q=80&w=800'}
+                    alt={club.name}
+                    fill
+                    className={styles.clubImage}
+                    sizes="(max-width: 768px) 100vw, 280px"
+                />
                 <div className={styles.badge}>{club.category || "EDM"}</div>
                 <button
                     className={styles.favoriteBtn}
@@ -45,7 +49,7 @@ export default function ClubCard({ club }: ClubCardProps) {
                     <div className={styles.price}>
                         최저 <span>{club.minPrice?.toLocaleString()}</span>원
                     </div>
-                    <Link href={`/checkout/${club.id}`} style={{ textDecoration: 'none' }}>
+                    <Link href={`/checkout/${club.id}`} className={styles.bookLink}>
                         <Button size="small" variant="outline">예약</Button>
                     </Link>
                 </div>

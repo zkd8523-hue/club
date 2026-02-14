@@ -1,6 +1,7 @@
 import { getClub } from "@/data/clubs";
 import CheckoutClient from "@/components/features/CheckoutClient";
 import { notFound } from "next/navigation";
+import styles from "./checkout.module.css";
 
 interface CheckoutPageProps {
     params: Promise<{ id: string }>;
@@ -15,7 +16,7 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
     }
 
     return (
-        <div className="container" style={{ padding: '2rem 1.5rem' }}>
+        <div className={`container ${styles.container}`}>
             <CheckoutClient club={club} />
         </div>
     );

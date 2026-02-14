@@ -1,17 +1,23 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './Checkout.module.css';
 import Button from '../common/Button';
+import PayPalButton from '../payment/PayPalButton';
 import { Club } from '@/types/club';
+import { useCartStore } from '@/store/cartStore';
 
 interface CheckoutClientProps {
     club: Club;
 }
 
 export default function CheckoutClient({ club }: CheckoutClientProps) {
+    const router = useRouter();
     const [selectedTable, setSelectedTable] = useState(club.tables[0]);
     const [selectedAddons, setSelectedAddons] = useState<typeof club.menu>([]);
+    const [showPayPal, setShowPayPal] = useState(false);
+    const addItem = useCartStore(state => state.addItem);
 
     const toggleAddon = (item: typeof club.menu[0]) => {
         if (selectedAddons.find(a => a.id === item.id)) {
@@ -25,9 +31,38 @@ export default function CheckoutClient({ club }: CheckoutClientProps) {
     const serviceFee = Math.floor(subtotal * 0.1);
     const total = subtotal + serviceFee;
 
+    const handleAddToCart = () => {
+        addItem({
+            clubId: club.id,
+            clubName: club.name,
+            type: 'table',
+            itemId: selectedTable.id,
+            itemName: selectedTable.name,
+            price: selectedTable.price,
+            quantity: 1,
+            capacity: selectedTable.capacity,
+        });
+        selectedAddons.forEach(addon => {
+            addItem({
+                clubId: club.id,
+                clubName: club.name,
+                type: 'menu',
+                itemId: addon.id,
+                itemName: addon.name,
+                price: addon.price,
+                quantity: 1,
+            });
+        });
+        alert('장바구니에 추가되었습니다!');
+    };
+
     const handleCheckout = () => {
-        alert('Proceeding to Secure Checkout with PayPal...\nTotal: ₩' + total.toLocaleString());
-        // Here we would call the PayPal MCP tool or API
+        setShowPayPal(true);
+    };
+
+    const handlePaymentSuccess = (details: Record<string, unknown>) => {
+        console.log('Payment completed:', details);
+        router.push('/bookings/confirmation');
     };
 
     return (
@@ -111,14 +146,40 @@ export default function CheckoutClient({ club }: CheckoutClientProps) {
                             </div>
                         </div>
 
-                        <Button
-                            variant="primary"
-                            fullWidth
-                            size="large"
-                            onClick={handleCheckout}
-                        >
-                            Confirm & Pay Now
-                        </Button>
+                        <div className={styles.checkoutActions}>
+                            <Button
+                                variant="outline"
+                                fullWidth
+                                onClick={handleAddToCart}
+                            >
+                                Add to Cart
+                            </Button>
+                            <Button
+                                variant="primary"
+                                fullWidth
+                                size="large"
+                                onClick={handleCheckout}
+                            >
+                                Confirm & Pay Now
+                            </Button>
+                        </div>
+
+                        {showPayPal && (
+                            <div className={styles.paypalSection}>
+                                <PayPalButton
+                                    amount={total}
+                                    items={[
+                                        { name: selectedTable.name, price: selectedTable.price },
+                                        ...selectedAddons.map(a => ({ name: a.name, price: a.price })),
+                                    ]}
+                                    onSuccess={handlePaymentSuccess}
+                                    onError={(error) => {
+                                        console.error('Payment failed:', error);
+                                        alert('결제에 실패했습니다. 다시 시도해주세요.');
+                                    }}
+                                />
+                            </div>
+                        )}
                         <p className={styles.secureText}>🔒 Secure SSL Encrypted Connection</p>
                     </div>
                 </div>

@@ -1,3 +1,7 @@
+.container {
+    padding: 4rem 1.5rem;
+}
+
 .header {
     text-align: center;
     margin-bottom: 4rem;
